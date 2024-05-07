@@ -13,7 +13,57 @@ To implement a calculator using LEX and YACC.
 7. Compile these with the C compiler as gcc lex.yy.c y.tab.c
 8. Enter an expression as input and it is evaluated and the answer is displayed as output.
 # PROGRAM
+# Exp11.l
+```
+%{
+#include"y.tab.h"
+#include<math.h>
+%}
+%%
+([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) {yylval.dval=atof(yytext);return
+NUMBER;}
+log |
+LOG {return LOG;}
+In {return nLOG;}
+sin |
+SIN {return SINE;}
+cos |
+COS {return COS;}
+tan |
+TAN {return TAN;}
+mem {return MEM;}
+[\t];
+\$ return 0;
+\n|. return yytext[0];
+%%
+```
+# Exp11.y
+```
+%{
+#include"y.tab.h"
+#include<math.h>
+%}
+%%
+([0-9]+|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) {yylval.dval=atof(yytext);return
+NUMBER;}
+log |
+LOG {return LOG;}
+In {return nLOG;}
+sin |
+SIN {return SINE;}
+cos |
+COS {return COS;}
+tan |
+TAN {return TAN;}
+mem {return MEM;}
+[\t];
+\$ return 0;
+\n|. return yytext[0];
+%%
+```
 # OUTPUT
+![Screenshot 2024-05-05 204908](https://github.com/HariviswanathB/Ex-11-IMPLEMENTATION-OF-CALCULATOR-USING-LEX-AND-YACC-/assets/119103855/320bb281-f4bb-4429-b89e-2661f5a68a88)
+
 # RESULT
 The calculator is implemented using LEX and YACC and the output is verified.
 
